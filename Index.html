@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Hub BD | Direct Download Portal</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/705/705062.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0f1014;
+            color: #e2e2e2;
+        }
+
+        .movie-card {
+            background: #1a1c23;
+            border: 1px solid #2d303a;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.02);
+            border-color: #cc0000;
+        }
+
+        .sidebar-link:hover {
+            background-color: #cc0000;
+            color: white;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, #cc0000, #880000);
+        }
+
+        /* Responsive Sidebar */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { padding-left: 0; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 w-full z-50 bg-[#1a1c23] border-b border-white/5 h-16 flex items-center px-6 justify-between">
+        <div class="flex items-center gap-4">
+            <button class="md:hidden"><i data-lucide="menu"></i></button>
+            <h1 class="text-xl font-bold tracking-tighter uppercase">
+                MOVIES <span class="text-red-600">HUB</span> BD
+            </h1>
+        </div>
+        
+        <div class="flex-1 max-w-xl px-6">
+            <div class="relative">
+                <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search movies, series..." 
+                       class="w-full bg-[#0f1014] border border-white/10 rounded-md py-2 px-10 focus:outline-none focus:border-red-600 text-sm">
+                <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-gray-500"></i>
+            </div>
+        </div>
+
+        <div class="hidden md:flex gap-4 items-center">
+            <span class="text-xs text-gray-500">v2.0 Stable</span>
+            <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold">M</div>
+        </div>
+    </header>
+
+    <div class="flex pt-16">
+        <aside class="sidebar w-64 fixed h-full bg-[#16171d] border-r border-white/5 p-4 space-y-1 overflow-y-auto">
+            <p class="text-[10px] font-bold text-gray-500 uppercase px-3 mb-2 tracking-widest">Categories</p>
+            <a href="#" onclick="filterCat('all')" class="sidebar-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition">
+                <i data-lucide="layout-grid" class="w-4 h-4 mr-3"></i> All Movies
+            </a>
+            <a href="#" onclick="filterCat('bengali')" class="sidebar-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition">
+                <i data-lucide="languages" class="w-4 h-4 mr-3 text-red-500"></i> Bengali Movies
+            </a>
+            <a href="#" onclick="filterCat('hollywood')" class="sidebar-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition">
+                <i data-lucide="clapperboard" class="w-4 h-4 mr-3 text-blue-500"></i> Hollywood
+            </a>
+            <a href="#" onclick="filterCat('hindi')" class="sidebar-link flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition">
+                <i data-lucide="film" class="w-4 h-4 mr-3 text-orange-500"></i> Hindi / Bollywood
+            </a>
+            <hr class="border-white/5 my-4">
+            <p class="text-[10px] font-bold text-gray-500 uppercase px-3 mb-2 tracking-widest">Quality</p>
+            <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-lg text-xs">4K Ultra HD</a>
+            <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-lg text-xs">1080p Bluray</a>
+            <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-lg text-xs">720p WEB-DL</a>
+        </aside>
+
+        <main class="main-content md:pl-64 w-full p-6">
+            
+            <div class="bg-red-950/20 border border-red-900/50 p-4 rounded-lg mb-8 flex items-center gap-4">
+                <div class="bg-red-600 p-2 rounded">
+                    <i data-lucide="megaphone" class="w-5 h-5 text-white"></i>
+                </div>
+                <p class="text-sm text-red-200">Welcome to <b>Movies Hub BD</b>. New Bengali web series and Hollywood 4K movies added daily!</p>
+            </div>
+
+            <div id="movieGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                
+                <div class="movie-card rounded-lg overflow-hidden flex flex-col cat-bengali">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1594908941016-22447a91bb24?w=400" class="w-full aspect-[3/4] object-cover">
+                        <span class="absolute top-2 left-2 bg-red-600 text-[9px] font-bold px-1.5 py-0.5 rounded">NEW</span>
+                    </div>
+                    <div class="p-3 space-y-2 flex-1 flex flex-col">
+                        <h3 class="movie-name text-sm font-bold leading-tight line-clamp-2">Aranyer Chhaya (2026) Bengali Horror</h3>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">Bengali • 1080p</p>
+                        <div class="mt-auto pt-2">
+                            <button onclick="window.location.href='#'" class="download-btn w-full text-[11px] font-bold py-2 rounded uppercase tracking-wider">Download Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-card rounded-lg overflow-hidden flex flex-col cat-hollywood">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400" class="w-full aspect-[3/4] object-cover">
+                    </div>
+                    <div class="p-3 space-y-2 flex-1 flex flex-col">
+                        <h3 class="movie-name text-sm font-bold leading-tight line-clamp-2">The Proxima Signal (2080) Sci-Fi Original</h3>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">English • 4K UHD</p>
+                        <div class="mt-auto pt-2">
+                            <button class="download-btn w-full text-[11px] font-bold py-2 rounded uppercase tracking-wider">Download Now</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Simple Search Logic
+        function searchFunction() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('movie-card');
+            
+            for (let card of cards) {
+                let name = card.querySelector('.movie-name').innerText.toLowerCase();
+                card.style.display = name.includes(input) ? "flex" : "none";
+            }
+        }
+
+        // Sidebar Filter Logic
+        function filterCat(category) {
+            let cards = document.getElementsByClassName('movie-card');
+            for (let card of cards) {
+                if (category === 'all') {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = card.classList.contains('cat-' + category) ? "flex" : "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
