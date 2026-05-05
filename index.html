@@ -3,115 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineStream | Modern Movie UI</title>
+    <title>Movies Hub BD | Download Latest Movies</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
         
+        :root {
+            --primary-red: #cc0000;
+            --dark-bg: #080808;
+            --card-bg: #121212;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #050505;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark-bg);
             color: white;
+            margin: 0;
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .red-gradient {
+            background: linear-gradient(135deg, #ff0000 0%, #880000 100%);
         }
 
-        .movie-card:hover .info-overlay {
+        .movie-poster:hover .download-overlay {
             opacity: 1;
-            transform: translateY(0);
         }
 
-        .hero-gradient {
-            background: linear-gradient(to top, #050505, transparent);
+        .custom-shadow {
+            box-shadow: 0 10px 30px -10px rgba(204, 0, 0, 0.3);
+        }
+
+        /* Glassmorphism for Navbar */
+        .glass-header {
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-tighter text-red-600">CINE<span class="text-white">STREAM</span></div>
-        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-            <a href="#" class="hover:text-white transition">Home</a>
-            <a href="#" class="hover:text-white transition">Movies</a>
-            <a href="#" class="hover:text-white transition">TV Shows</a>
-            <a href="#" class="hover:text-white transition">My List</a>
-        </div>
-        <div class="flex items-center space-x-5">
-            <i data-lucide="search" class="w-5 h-5 cursor-pointer"></i>
-            <i data-lucide="bell" class="w-5 h-5 cursor-pointer"></i>
-            <div class="w-8 h-8 bg-gradient-to-tr from-red-600 to-orange-400 rounded-md"></div>
+    <nav class="fixed top-0 w-full z-50 glass-header px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-black tracking-tighter uppercase">
+                    MOVIES <span class="text-red-600">HUB</span> <span class="bg-red-600 px-1 rounded">BD</span>
+                </span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6 text-sm font-medium uppercase tracking-widest">
+                <a href="#" class="text-red-500">Home</a>
+                <a href="#" class="hover:text-red-500 transition">Bangali</a>
+                <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+                <a href="#" class="hover:text-red-500 transition">Dual Audio</a>
+            </div>
+
+            <div class="flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-1.5">
+                <input type="text" placeholder="Search movies..." class="bg-transparent outline-none text-sm w-24 md:w-48">
+                <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
+            </div>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] w-full overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=2070" 
-             class="absolute inset-0 w-full h-full object-cover" alt="Hero Background">
-        <div class="absolute inset-0 hero-gradient"></div>
+    <div class="pt-32 pb-10 px-6 text-center bg-gradient-to-b from-red-900/20 to-transparent">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Download Unlimited Movies</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">High quality posters and fast download links for the latest Bengali, Hindi, and Hollywood releases.</p>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
         
-        <div class="absolute bottom-20 left-10 max-w-2xl space-y-4">
-            <span class="px-3 py-1 bg-red-600 text-xs font-bold rounded uppercase tracking-widest">Trending Now</span>
-            <h1 class="text-6xl font-bold leading-tight">Interstellar Voyage</h1>
-            <p class="text-gray-300 text-lg">A crew of astronauts travel through a wormhole in space in an attempt to ensure humanity's survival.</p>
-            <div class="flex space-x-4 pt-4">
-                <button class="bg-white text-black px-8 py-3 rounded-lg font-bold flex items-center hover:bg-gray-200 transition">
-                    <i data-lucide="play" class="w-5 h-5 mr-2 fill-black"></i> Play
-                </button>
-                <button class="glass px-8 py-3 rounded-lg font-bold flex items-center hover:bg-white/20 transition">
-                    <i data-lucide="info" class="w-5 h-5 mr-2"></i> More Info
-                </button>
-            </div>
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-xl font-bold flex items-center">
+                <span class="w-2 h-8 bg-red-600 mr-3 rounded-full"></span>
+                RECENT UPLOADS
+            </h3>
         </div>
-    </section>
 
-    <main class="px-10 -mt-10 relative z-10 space-y-12 pb-20">
-        
-        <section>
-            <h2 class="text-xl font-semibold mb-6 flex items-center">
-                Popular on CineStream <i data-lucide="chevron-right" class="ml-2 w-5 h-5 text-gray-500"></i>
-            </h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                
-                <div class="movie-card relative group cursor-pointer overflow-hidden rounded-xl transition-transform duration-300 hover:scale-105">
-                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=500" class="w-full aspect-[2/3] object-cover" alt="Movie">
-                    <div class="info-overlay absolute inset-0 bg-black/80 opacity-0 flex flex-col justify-end p-4 transition-opacity duration-300 transform translate-y-2">
-                        <h3 class="font-bold text-sm">The Midnight Sky</h3>
-                        <div class="flex items-center text-[10px] text-gray-400 mt-1 space-x-2">
-                            <span class="text-green-400 font-bold">98% Match</span>
-                            <span>2024</span>
-                            <span class="border border-gray-600 px-1 rounded">HD</span>
-                        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            
+            <div class="group bg-card-bg rounded-xl overflow-hidden custom-shadow transition-transform hover:-translate-y-2">
+                <div class="relative movie-poster">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=500" 
+                         class="w-full aspect-[2/3] object-cover" alt="Movie Title">
+                    
+                    <div class="download-overlay absolute inset-0 bg-black/60 opacity-0 flex items-center justify-center transition-opacity duration-300">
+                        <a href="YOUR_DOWNLOAD_LINK_HERE" class="red-gradient p-3 rounded-full shadow-lg">
+                            <i data-lucide="download" class="text-white w-6 h-6"></i>
+                        </a>
                     </div>
                 </div>
-
-                <div class="movie-card relative group cursor-pointer overflow-hidden rounded-xl transition-transform duration-300 hover:scale-105">
-                    <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=500" class="w-full aspect-[2/3] object-cover" alt="Movie">
-                    <div class="info-overlay absolute inset-0 bg-black/80 opacity-0 flex flex-col justify-end p-4 transition-opacity duration-300">
-                        <h3 class="font-bold text-sm">Retro Noir</h3>
-                        <div class="flex items-center text-[10px] text-gray-400 mt-1 space-x-2">
-                            <span class="text-green-400 font-bold">85% Match</span>
-                            <span>2025</span>
-                            <span class="border border-gray-600 px-1 rounded">4K</span>
-                        </div>
+                <div class="p-4">
+                    <span class="text-[10px] text-red-500 font-bold uppercase tracking-widest">Action | 4K</span>
+                    <h4 class="font-bold text-sm mt-1 truncate">Shadow of Dhaka</h4>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-xs text-gray-500 italic">Added Today</span>
+                        <a href="#" class="text-[11px] font-bold text-white bg-white/10 px-2 py-1 rounded hover:bg-red-600 transition">DOWNLOAD</a>
                     </div>
                 </div>
-
-                <div class="movie-card relative overflow-hidden rounded-xl bg-gray-900 animate-pulse w-full aspect-[2/3]"></div>
-                <div class="movie-card relative overflow-hidden rounded-xl bg-gray-900 animate-pulse w-full aspect-[2/3]"></div>
-                <div class="movie-card relative overflow-hidden rounded-xl bg-gray-900 animate-pulse w-full aspect-[2/3]"></div>
-                <div class="movie-card relative overflow-hidden rounded-xl bg-gray-900 animate-pulse w-full aspect-[2/3]"></div>
-
             </div>
-        </section>
 
+            <div class="group bg-card-bg rounded-xl overflow-hidden custom-shadow transition-transform hover:-translate-y-2">
+                <div class="relative movie-poster">
+                    <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?auto=format&fit=crop&q=80&w=500" 
+                         class="w-full aspect-[2/3] object-cover" alt="Movie Title">
+                    <div class="download-overlay absolute inset-0 bg-black/60 opacity-0 flex items-center justify-center transition-opacity duration-300">
+                        <a href="YOUR_DOWNLOAD_LINK_HERE" class="red-gradient p-3 rounded-full">
+                            <i data-lucide="download" class="text-white w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <span class="text-[10px] text-red-500 font-bold uppercase tracking-widest">Thriller | 1080p</span>
+                    <h4 class="font-bold text-sm mt-1 truncate">Midnight Signal</h4>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-xs text-gray-500 italic">2 days ago</span>
+                        <a href="#" class="text-[11px] font-bold text-white bg-white/10 px-2 py-1 rounded hover:bg-red-600 transition">DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card-bg rounded-xl aspect-[2/3] animate-pulse flex items-center justify-center border border-white/5">
+                <span class="text-gray-700 text-xs">Awaiting Upload...</span>
+            </div>
+            <div class="bg-card-bg rounded-xl aspect-[2/3] animate-pulse flex items-center justify-center border border-white/5">
+                <span class="text-gray-700 text-xs">Awaiting Upload...</span>
+            </div>
+            <div class="bg-card-bg rounded-xl aspect-[2/3] animate-pulse flex items-center justify-center border border-white/5">
+                <span class="text-gray-700 text-xs">Awaiting Upload...</span>
+            </div>
+
+        </div>
     </main>
 
+    <footer class="mt-20 border-t border-white/5 py-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-sm text-gray-500">
+                © 2026 <span class="text-red-600 font-bold">MOVIES HUB BD</span>. All links are gathered from the internet.
+            </div>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="p-2 bg-white/5 rounded hover:bg-red-600 transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="p-2 bg-white/5 rounded hover:bg-red-600 transition"><i data-lucide="send" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Initialize Icons
+        // Initialize Lucide Icons
         lucide.createIcons();
     </script>
 </body>
